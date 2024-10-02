@@ -18,36 +18,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KEYBOARD_H
-#define __KEYBOARD_H
+#ifndef __MISC_H
+#define __MISC_H
 
 #include <ch32v00x.h>
 
-#define KBD_USE_BUZZ
+// Timers
+void GPIO_Config(GPIO_TypeDef *GPIO_port, uint16_t GPIO_pin, GPIOMode_TypeDef GPIO_mode);
+void GPIO_Interrupt(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource, uint32_t GPIO_Line, EXTITrigger_TypeDef GPIO_Trigger);
 
-#define KBD_PERIPHERY     (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD)
-#define KBD_CLOCK_PORT    GPIOD
-#define KBD_CLOCK_PIN     GPIO_Pin_1
+// Timers
+void Timer_Config(TIM_TypeDef *TIM, uint16_t period, uint16_t prescaler, uint16_t mode);
+void Slave_Timer_Config(TIM_TypeDef *TIM_Slave, TIM_TypeDef *TIM_Master, uint16_t TIM_TRGOSource, uint16_t period, uint16_t mode);
+void Timer_Interrupt(TIM_TypeDef *TIM);
 
-#define KBD_INT_PORT_SRC  GPIO_PortSourceGPIOD
-#define KBD_INT_PIN_SRC   GPIO_PinSource1
-#define KBD_INT_LINE      EXTI_Line1
+// PWM
+void PWM_Config(TIM_TypeDef *TIM, uint8_t channel, uint16_t pulse, uint16_t mode);
 
-#define KBD_DATA_PORT     GPIOA
-#define KBD_DATA_PIN      GPIO_Pin_2
-
-#define BUZZ_PORT         GPIOC
-#define BUZZ_PIN          GPIO_Pin_4
-
-void buzz(uint32_t hz, uint32_t timeMS);
-void buzz_ok();
-
-void kbd_init();
-uint32_t kbd_read();
-
-uint32_t kbd_wait();
-uint32_t kbd_wait_press();
-uint32_t kbd_wait_release();
-char kbd_to_ascii(uint32_t key_code);
-
-#endif // __KEYBOARD_H
+#endif // __MISC_H

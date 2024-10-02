@@ -40,11 +40,14 @@
 #define BUZZ_PIN          GPIO_Pin_4
 
 void buzz(uint32_t hz, uint32_t timeMS);
+void buzz_ok();
+
 void kbd_init();
 uint32_t kbd_read();
 
 uint32_t kbd_wait();
 uint32_t kbd_wait_press();
 uint32_t kbd_wait_release();
+char kbd_to_ascii(uint32_t key_code);
 
 #endif // __KEYBOARD_H

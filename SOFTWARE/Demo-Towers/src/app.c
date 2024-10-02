@@ -94,7 +94,7 @@
 #define DIR_LEFT                   4
 
 // Frame rate is 75 Hz, with pixel clock at 12 MHz
-#define SCREEN_FPS      75
+#define SCREEN_FPS      VGA_REFRESH
 #define STARTUP_DELAY   (SCREEN_FPS*6)   // 6 seconds
 #define SOLUTION_DELAY  (SCREEN_FPS*2)   // 2 seconds
 #define MOVE_DELAY      (SCREEN_FPS/20)  // 1/20 second
@@ -302,15 +302,17 @@ void splash() {
 	vga_cls();
 
 	uint8_t row = 0;
-	vga_print_at(row++, 0, "===== RVPC Demo =====");
+	vga_print_at(row++, 0, "====== RVPC Demo ======");
 	vga_print_at(row++, 0, "VGA by Curtis Whitley");
 	row += 2;
-	vga_print_at(row++, 4, "Hanoi Towers");
+	vga_print_at(row++, 5, "Hanoi Towers");
 	row++;
-	vga_print_at(row++, 5, "(solution)");
+	vga_print_at(row++, 6, "(solution)");
 	row += 3;
 	vga_print_at(row++, 0, "Use <Space> to pause");
-	vga_print_at(STATUS_ROW, 0, "Press a key to start");
+	vga_print_at(STATUS_ROW, 1, "Press a key to start");
+
+	buzz_ok();
 
 	kbd_wait_release();
 }
@@ -319,12 +321,6 @@ void initialize_application() {
 	kbd_init();
 
 	splash();
-
-	// Fill entire screen with blank characters
-	vga_cls();
-
-	// Write constant texts
-	vga_print_at(TITLE_ROW, 0, "===== RVPC Demo =====");
 
 	// Prepare for first move
 	push_move(NUM_RINGS, 0, 1, 2);

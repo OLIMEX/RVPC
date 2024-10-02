@@ -34,13 +34,6 @@ extern int main(void);
 
 typedef void function(void);
 
-void buzz_ok() {
-	buzz( 698, 50);
-	buzz( 880, 50);
-	buzz(1047, 50);
-	buzz(1397, 50);
-}
-
 void key_ok() {
 	buzz(880, 10);
 }
@@ -62,16 +55,16 @@ inline static uint8_t is_hex_digit(char letter) {
 }
 
 void addresses() {
-	printfln("reset     @0x%08lX", (uint32_t)main);
-	printfln("buzz_ok   @0x%08lX", (uint32_t)buzz_ok);
-	printfln("buzz_err  @0x%08lX", (uint32_t)key_err);
-	printfstr("sandbox   @0x%08lX", (uint32_t)mon_sandbox);
+	printfln("reset    @0x%08lX", (uint32_t)main);
+	printfln("buzz_ok  @0x%08lX", (uint32_t)buzz_ok);
+	printfln("buzz_err @0x%08lX", (uint32_t)key_err);
+	printfln("sandbox  @0x%08lX", (uint32_t)mon_sandbox);
 }
 
 void help() {
-	println("[address][cmd][bytes]");
+	println("[addr][cmd][bytes]");
 	println("Commands");
-	println("[Enter] Get address");
+	println("[\n] Get addr");
 	println("[.] Dump TO addr");
 	println("[+] Dump 16 bytes");
 	println("[:] Write bytes");
@@ -259,27 +252,36 @@ void app_init() {
 	vga_cls();
 	vga_cursor_set(0, 0);
 	
-	println("RVMON 1.0  (c) Olimex");
+	println("RVMON 1.0 (c) Olimex");
 	println("VGA by Curtis Whitley");
 	cursor_down();
 
 	help();
 	cursor_down();
 	addresses();
+
 	prompt();
+	
+	buzz_ok();
 }
 
 void app_run() {
 	static uint8_t shift = 0;
 
 	uint32_t key_code = kbd_wait();
+	uint8_t key_char = kbd_to_ascii(key_code);
 
 	switch (key_code) {
 		case 0xF05A:  // Enter
 			key_ok();
 			execute();
 		break;
-		
+
+		case 0x66:   // Backspace press
+			key(0x08);
+		case 0xF066: // Backspace release
+		break;
+
 		case 0x12:    // Left shift
 		case 0x59:    // Right shift
 			shift = 1;
@@ -290,119 +292,28 @@ void app_run() {
 			shift = 0;
 		break;
 
-		case 0xF016: // 1 released
-			key('1');
-		break;
-
-		case 0xF01E: // 2 released
-			if (shift == 0) {
-				key('2');
-			} else {
-				key('@');
-			}
-		break;
-
-		case 0xF026: // 3 released
-			key('3');
-		break;
-
-		case 0xF025: // 4 released
-			key('4');
-		break;
-
-		case 0xF02E: // 5 released
-			key('5');
-		break;
-
-		case 0xF036: // 6 released
-			key('6');
-		break;
-
-		case 0xF03D: // 7 released
-			key('7');
-		break;
-
-		case 0xF03E: // 8 released
-			key('8');
-		break;
-
-		case 0xF046: // 9 released
-			key('9');
-		break;
-
-		case 0xF045: // 0 released
-			key('0');
-		break;
-
-		case 0xF01C: // A released
-			key('A');
-		break;
-
-		case 0xF032: // B released
-			key('B');
-		break;
-
-		case 0xF021: // C released
-			key('C');
-		break;
-
-		case 0xF023: // D released
-			key('D');
-		break;
-
-		case 0xF024: // E released
-			key('E');
-		break;
-
-		case 0xF02B: // F released
-			key('F');
-		break;
-
-		case 0xF034: // G released
-			key('G');
-		break;
-
-		case 0x66:   // Backspace press
-			key(0x08);
-		case 0xF066: // Backspace release
-		break;
-
-		case 0xF029:  // Space
-			key(' ');
-		break;
-
-		case 0xF049:  // .
-			key('.');
-		break;
-
-		case 0xF04A: // ?
-			if (shift) {
-				key('?');
-			} else {
-				key_err();
-			}
-		break;
-
-		case 0xF055: // +
-			if (shift) {
-				key('+');
-			} else {
-				key_err();
-			}
-		break;
-
-		case 0xF04C: // :
-			if (shift) {
-				key(':');
-			} else {
-				key_err();
-			}
-		break;
-
 		default:
 			// Key released
 			if ((key_code & 0xFF00) == 0xF000) {
-				key_err();
+				if (key_char >= '0' && key_char <= '9') {
+					if (key_char == '2' && shift) {
+						key('@');
+					} else {
+						key(key_char);
+					}
+				} else if ((key_char >= 'a' && key_char <= 'f') || key_char  == 'g') {
+					key(key_char - 'a' + 'A');
+				} else if (key_char == ' ' || key_char == '.') {
+					key(key_char);
+				} else if (key_char == '/' && shift) {
+					key('?');
+				} else if (key_char == '=' && shift) {
+					key('+');
+				} else if (key_char == ';' && shift) {
+					key(':');
+				} else {
+					key_err();
+				}
 			}
 		break;
 	}

@@ -18,36 +18,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KEYBOARD_H
-#define __KEYBOARD_H
+#ifndef __PRINT_H
+#define __PRINT_H
 
-#include <ch32v00x.h>
+void cursor_down();
+void write(char c);
+void print(const char *str);
+void println(const char *str);
+void printfstr(const char* format, ...) __attribute__((__format__ (__printf__, 1, 2)));
+void printfln(const char* format, ...) __attribute__((__format__ (__printf__, 1, 2)));
 
-#define KBD_USE_BUZZ
-
-#define KBD_PERIPHERY     (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD)
-#define KBD_CLOCK_PORT    GPIOD
-#define KBD_CLOCK_PIN     GPIO_Pin_1
-
-#define KBD_INT_PORT_SRC  GPIO_PortSourceGPIOD
-#define KBD_INT_PIN_SRC   GPIO_PinSource1
-#define KBD_INT_LINE      EXTI_Line1
-
-#define KBD_DATA_PORT     GPIOA
-#define KBD_DATA_PIN      GPIO_Pin_2
-
-#define BUZZ_PORT         GPIOC
-#define BUZZ_PIN          GPIO_Pin_4
-
-void buzz(uint32_t hz, uint32_t timeMS);
-void buzz_ok();
-
-void kbd_init();
-uint32_t kbd_read();
-
-uint32_t kbd_wait();
-uint32_t kbd_wait_press();
-uint32_t kbd_wait_release();
-char kbd_to_ascii(uint32_t key_code);
-
-#endif // __KEYBOARD_H
+#endif // __PRINT_H

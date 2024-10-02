@@ -67,7 +67,7 @@ uint16_t tetris_score = 0;
 uint16_t tetris_best = 0;
 
 // Frame rate is 75 Hz, with pixel clock at 12 MHz
-#define APP_SCREEN_FPS         75
+#define APP_SCREEN_FPS         VGA_REFRESH
 #define APP_STARTUP_DELAY      (APP_SCREEN_FPS*6)        // 6 seconds
 #define APP_REFRESH_DELAY      (APP_SCREEN_FPS/20)       // 1/20 second
 
@@ -163,10 +163,10 @@ void splash() {
 	vga_cls();
 
 	uint8_t row = 0;
-	vga_print_at(row++, 0, "===== RVPC Demo =====");
+	vga_print_at(row++, 0, "====== RVPC Demo ======");
 	vga_print_at(row++, 0, "VGA by Curtis Whitley");
 	row += 2;
-	vga_print_at(row,   7, "TETRIS");
+	vga_print_at(row,   8, "TETRIS");
 	row += 3;
 	vga_print_at(row++, 0, "<Up>    Rotate");
 	vga_print_at(row++, 0, "<Left>  Move LEFT");
@@ -176,21 +176,18 @@ void splash() {
 	vga_print_at(row++, 0, "<Space> Pause / Play");
 	vga_print_at(row++, 0, "<Esc>   Reset");
 
-	vga_print_at(VGA_NUM_ROWS-1, 0, "Press a key to start");
+	vga_print_at(VGA_NUM_ROWS-1, 2, "Press a key to start");
 	
+	buzz_ok();
+
 	kbd_wait_release();
 	vga_cls();
 	srand(SysTick->CNT);
 }
 
-#define PIECE_DROP()  \
- 	buzz(880, 10)
+#define PIECE_DROP()  buzz(880, 10)
 
-#define LINE_DROP()   \
-	buzz( 698, 50);   \
-	buzz( 880, 50);   \
-	buzz(1047, 50);   \
-	buzz(1397, 50)
+#define LINE_DROP()   buzz_ok()
 
 void piece_update_sprite(TetrisPiece* piece) {
 	for (uint8_t row=0; row<TETRIS_SPRITE_ROWS; row++) {
@@ -295,18 +292,16 @@ void tetris_status() {
 	}
 	paused = app_pause;
 
-	uint8_t row = TETRIS_BIN_FIRST_ROW - 1;
+	uint8_t row = TETRIS_BIN_FIRST_ROW;
 	uint8_t col = TETRIS_BIN_FIRST_COL + TETRIS_BIN_COLUMNS + 3;
-	vga_printf_at (row++, col, "Speed %2d", tetris_speed);
-	row++;
-	vga_print_at (row++, col, "Blocks");
-	vga_printf_at(row++, col, "%8d", tetris_pieces_count+1);
-	row++;
-	vga_print_at (row++, col, "Score");
-	vga_printf_at(row++, col, "%8d", tetris_score);
 
-	vga_print_at (VGA_NUM_ROWS - 2, col, "BEST");
-	vga_printf_at(VGA_NUM_ROWS - 1, col, "%8d", tetris_best);
+	vga_printf_at (row++, col, "Speed  %3d", tetris_speed);
+	row++;
+	vga_printf_at (row++, col, "Blocks %3d", tetris_pieces_count+1);
+	row++;
+	vga_printf_at (row++, col, "Score  %3d", tetris_score);
+
+	vga_printf_at (VGA_NUM_ROWS - 1, col, "BEST   %3d", tetris_best);
 }
 
 void tetris_display() {

@@ -91,7 +91,7 @@
 #define DIR_LEFT                   4
 
 // Frame rate is 75 Hz, with pixel clock at 12 MHz
-#define SCREEN_FPS      75
+#define SCREEN_FPS      VGA_REFRESH
 #define STARTUP_DELAY   (SCREEN_FPS*6)   // 6 seconds
 #define SOLUTION_DELAY  (SCREEN_FPS*2)   // 2 seconds
 #define MOVE_DELAY      (SCREEN_FPS/20)  // 1/20 second
@@ -254,17 +254,19 @@ void splash() {
 	vga_cls();
 
 	uint8_t row = 0;
-	vga_print_at(row++, 0, "===== RVPC Demo =====");
+	vga_print_at(row++, 0, "====== RVPC Demo ======");
 	vga_print_at(row++, 0, "VGA by Curtis Whitley");
 	row += 2;
-	vga_print_at(row,   4, "Hanoi Towers");
+	vga_print_at(row,   5, "Hanoi Towers");
 	row += 4;
 	vga_print_at(row++, 0, "A,B,C Set FROM and TO");
 	vga_print_at(row++, 0, "Enter Make the move");
 	vga_print_at(row++, 0, "Esc   Reset the game");
 
-	vga_print_at(STATUS_ROW, 0, "Press a key to start");
+	vga_print_at(STATUS_ROW, 1, "Press a key to start");
 	
+	buzz_ok();
+
 	kbd_wait_release();
 }
 
@@ -272,8 +274,9 @@ void print_status() {
 	uint8_t cursor_col = vga_cursor_col();
 	vga_cursor_hide();
 
+	vga_clear_rect(STATUS_ROW, 0, STATUS_ROW, VGA_NUM_COLS-1);
 	if (app_pause) {
-		vga_print_at(STATUS_ROW, 0, "        PAUSED       ");
+		vga_print_at(STATUS_ROW, 8, "PAUSED");
 	} else if (success_check()) {
 		vga_printf_at(STATUS_ROW, 0, "SUCCSESS in %d moves", current_move);
 		current_move = 0;
@@ -285,7 +288,7 @@ void print_status() {
 			vga_printf_at(STATUS_ROW, MOVE_COL, "%d", current_move);
 			vga_cursor_set(STATUS_ROW, cursor_col > VGA_NUM_COLS ? FROM_COL : cursor_col);
 		} else {
-			vga_print_at(STATUS_ROW, 0, "       FAILURE       ");
+			vga_print_at(STATUS_ROW, 8, "FAILURE");
 		}
 	}
 }
@@ -326,12 +329,12 @@ void initialize_application() {
 	towers_init();
 }
 
-#define KEY_OK()   \
-	buzz(880, 10)
+#define KEY_OK() buzz(880, 10)
 
-#define KEY_ERR()  \
-	buzz(440, 50); \
-	buzz(220, 150)
+void KEY_ERR() {
+	buzz(440, 50);
+	buzz(220, 150);
+}
 
 uint8_t peg_check() {
 	if (interactive.from == 0xFF) {

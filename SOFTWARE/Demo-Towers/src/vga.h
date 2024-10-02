@@ -26,11 +26,31 @@
 
 #include "chardefs.h"
 
+#if !defined(VGA_MODE_31x18_56Hz) && !defined(VGA_MODE_23x18_75Hz) && !defined(VGA_MODE_31x36_56Hz) && !defined(VGA_MODE_23x36_75Hz)
+#define VGA_MODE_23x18_75Hz
+#endif
+
+#if defined(VGA_MODE_31x18_56Hz)
+#define VGA_REFRESH             56
+#define VGA_QUAD_SCAN
+#define VGA_NUM_COLS            31
+#elif defined(VGA_MODE_23x18_75Hz)
+#define VGA_REFRESH             75
+#define VGA_QUAD_SCAN
+#define VGA_NUM_COLS            23
+#elif defined(VGA_MODE_31x36_56Hz)
+#define VGA_REFRESH             56
+#define VGA_DUAL_SCAN
+#define VGA_NUM_COLS            31
+#elif defined(VGA_MODE_23x36_75Hz)
+#define VGA_REFRESH             75
+#define VGA_DUAL_SCAN
+#define VGA_NUM_COLS            23
+#endif
+
 #if !defined(VGA_QUAD_SCAN) && !defined(VGA_DUAL_SCAN)
 #define VGA_QUAD_SCAN
 #endif
-
-#define VGA_NUM_COLS            21
 
 #if defined(VGA_QUAD_SCAN)
 #define VGA_NUM_ROWS            18
@@ -61,7 +81,11 @@
 
 #ifdef SYSCLK_FREQ_48MHZ_HSI
 #define VGA_CLOCK_PRESCALER     4 // 48MHz / 4 = 12MHz
+#if defined(VGA_MODE_31x18_56Hz) || defined(VGA_MODE_31x36_56Hz)
+#define VGA_TICK_CNT_DIVIDER    3 // Converts 36MHz tick counts to 12MHz tick counts
+#elif defined(VGA_MODE_23x18_75Hz) || defined(VGA_MODE_23x36_75Hz)
 #define VGA_TICK_CNT_DIVIDER    4 // Converts 48MHz tick counts to 12MHz tick counts
+#endif
 #define VGA_TIMER_OC_MODE       TIM_OCMode_PWM1
 #else
 #define VGA_CLOCK_PRESCALER     2 // 24MHz / 2 = 12MHz
@@ -73,17 +97,23 @@
 #define VGA_HSYNC_PERIOD        ((1024)/VGA_TICK_CNT_DIVIDER)
 #define VGA_HSYNC_PULSE           ((72)/VGA_TICK_CNT_DIVIDER)
 
-#define VGA_VPERIOD             625
+#define VGA_VSYNC_PERIOD        625
 #define VGA_VSYNC_PULSE         2
 
 #ifdef SYSCLK_FREQ_48MHZ_HSI
-#define VGA_HBACK_PORCH         24
+#if defined(VGA_MODE_31x18_56Hz) || defined(VGA_MODE_31x36_56Hz)
+#define VGA_HBACK_PORCH         36
+#define VGA_PREPARE_WASTE       4
+#elif defined(VGA_MODE_23x18_75Hz) || defined(VGA_MODE_23x36_75Hz)
+#define VGA_HBACK_PORCH         23
+#define VGA_PREPARE_WASTE       3
+#endif
 #else
 #define VGA_HBACK_PORCH         18
 #endif
 
 #define VGA_VBACK_PORCH         36 // helps with vertical positioning
-#define VGA_VFRONT_PORCH        (VGA_VPERIOD - VGA_VACTIVE_LINES - VGA_VSYNC_PULSE - VGA_VBACK_PORCH)
+#define VGA_VFRONT_PORCH        (VGA_VSYNC_PERIOD - VGA_VACTIVE_LINES - VGA_VSYNC_PULSE - VGA_VBACK_PORCH)
 
 void vga_init();
 

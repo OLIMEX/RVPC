@@ -18,36 +18,32 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KEYBOARD_H
-#define __KEYBOARD_H
+#ifndef	__WAIT_H
+#define	__WAIT_H
 
 #include <ch32v00x.h>
 
-#define KBD_USE_BUZZ
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#define KBD_PERIPHERY     (RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD)
-#define KBD_CLOCK_PORT    GPIOD
-#define KBD_CLOCK_PIN     GPIO_Pin_1
+void Wait_Init();
 
-#define KBD_INT_PORT_SRC  GPIO_PortSourceGPIOD
-#define KBD_INT_PIN_SRC   GPIO_PinSource1
-#define KBD_INT_LINE      EXTI_Line1
+void Wait_Us(uint32_t delay);
 
-#define KBD_DATA_PORT     GPIOA
-#define KBD_DATA_PIN      GPIO_Pin_2
+void Wait_Ms(uint32_t delay);
 
-#define BUZZ_PORT         GPIOC
-#define BUZZ_PIN          GPIO_Pin_4
+static inline void Wait_Ticks(uint32_t delay) {
+    static volatile uint32_t start;
+	start = SysTick->CNT;
+	while (SysTick->CNT - start < delay);
+}
 
-void buzz(uint32_t hz, uint32_t timeMS);
-void buzz_ok();
+void setTimeout_Ms(uint32_t timeoutMS);
+uint8_t isTimeout_Ms();
 
-void kbd_init();
-uint32_t kbd_read();
+#ifdef __cplusplus
+}
+#endif
 
-uint32_t kbd_wait();
-uint32_t kbd_wait_press();
-uint32_t kbd_wait_release();
-char kbd_to_ascii(uint32_t key_code);
-
-#endif // __KEYBOARD_H
+#endif // __WAIT_H

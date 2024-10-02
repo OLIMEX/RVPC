@@ -29,7 +29,6 @@ extern void run_keyboard_state_machine();
 extern void run_app_state_machine();
 
 int main(void) {
-	__NOP();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemCoreClockUpdate();
 	

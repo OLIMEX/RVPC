@@ -82,7 +82,7 @@ void vga_init() {
 	// VSync
 	// Slave Timer Config
 	GPIO_PinRemapConfig(GPIO_PartialRemap2_TIM1, ENABLE);
-	Slave_Timer_Config(VGA_VSYNC_TIM, VGA_HSYNC_TIM, TIM_TRGOSource_OC4Ref, VGA_VPERIOD, TIM_CounterMode_Up);
+	Slave_Timer_Config(VGA_VSYNC_TIM, VGA_HSYNC_TIM, TIM_TRGOSource_OC4Ref, VGA_VSYNC_PERIOD, TIM_CounterMode_Up);
 	// PWM Config
 	PWM_Config(VGA_VSYNC_TIM, VGA_VSYNC_CH, VGA_VSYNC_PULSE, VGA_TIMER_OC_MODE);
 	// Interrupt Config
@@ -108,7 +108,7 @@ inline uint8_t vga_is_frame_end() {
  * @brief Clear VGA screen
  */
 void vga_cls() {
-	memset(vga_screen_chars, 0x20, sizeof(vga_screen_chars));
+	memset(vga_screen_chars, ' ', sizeof(vga_screen_chars));
 }
 
 /*********************************************************************
@@ -214,16 +214,14 @@ void vga_print_at(uint8_t row, uint8_t col, const char* text) {
  * @param format pointer to null terminated formatted text to diaplay
  */
 void vga_printf_at(uint8_t row, uint8_t col, const char* format, ...) {
-	if (row < VGA_NUM_ROWS && col < VGA_NUM_COLS) {
-		va_list argptr;
-		char tmp[VGA_NUM_COLS * 2];
-		
-		va_start(argptr, format);
-		vsnprintf(tmp, sizeof(tmp), format, argptr);
-		strncpy((char *)(&vga_screen_chars[row][col]), tmp, strlen(tmp));
+	va_list argptr;
+	char tmp[VGA_NUM_COLS + 2];
+	
+	va_start(argptr, format);
+	vsnprintf(tmp, sizeof(tmp), format, argptr);
+	va_end(argptr);
 
-		va_end(argptr);
-	}
+	vga_print_at(row, col, tmp);
 }
 
 /*********************************************************************
@@ -265,9 +263,11 @@ inline static void vga_prepare_line(uint32_t line) {
 	static uint32_t MASK = 0;
 	MASK = 0;
 	if (line == vga_cursor_pos.line) {
-		if (SysTick->CNT & (1 << 24)) {
-			MASK = 0x00FF00FF << 2;
+		if (SysTick->CNT & (1 << 24)) {   
+			MASK = (0x00FF00FF << 2);
 		}
+	} else {
+		waste_time(VGA_PREPARE_WASTE);
 	}
 
 	frame_line_bits[ 0] = char_defs[char_indexes[ 0] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col ==  0 ? MASK : 0);
@@ -291,6 +291,18 @@ inline static void vga_prepare_line(uint32_t line) {
 	frame_line_bits[18] = char_defs[char_indexes[18] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 18 ? MASK : 0);
 	frame_line_bits[19] = char_defs[char_indexes[19] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 19 ? MASK : 0);
 	frame_line_bits[20] = char_defs[char_indexes[20] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 20 ? MASK : 0);
+	frame_line_bits[21] = char_defs[char_indexes[21] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 21 ? MASK : 0);
+	frame_line_bits[22] = char_defs[char_indexes[22] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 22 ? MASK : 0);
+	#if VGA_NUM_COLS > 23
+	frame_line_bits[23] = char_defs[char_indexes[23] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 23 ? MASK : 0);
+	frame_line_bits[24] = char_defs[char_indexes[24] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 24 ? MASK : 0);
+	frame_line_bits[25] = char_defs[char_indexes[25] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 25 ? MASK : 0);
+	frame_line_bits[26] = char_defs[char_indexes[26] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 26 ? MASK : 0);
+	frame_line_bits[27] = char_defs[char_indexes[27] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 27 ? MASK : 0);
+	frame_line_bits[28] = char_defs[char_indexes[28] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 28 ? MASK : 0);
+	frame_line_bits[29] = char_defs[char_indexes[29] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 29 ? MASK : 0);
+	frame_line_bits[30] = char_defs[char_indexes[30] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 30 ? MASK : 0);
+	#endif
 	#else
 	frame_line_bits[ 0] = char_defs[char_indexes[ 0] & CHARS_COUNT_MASK];
 	frame_line_bits[ 1] = char_defs[char_indexes[ 1] & CHARS_COUNT_MASK];
@@ -313,37 +325,48 @@ inline static void vga_prepare_line(uint32_t line) {
 	frame_line_bits[18] = char_defs[char_indexes[18] & CHARS_COUNT_MASK];
 	frame_line_bits[19] = char_defs[char_indexes[19] & CHARS_COUNT_MASK];
 	frame_line_bits[20] = char_defs[char_indexes[20] & CHARS_COUNT_MASK];
+	frame_line_bits[21] = char_defs[char_indexes[21] & CHARS_COUNT_MASK];
+	frame_line_bits[22] = char_defs[char_indexes[22] & CHARS_COUNT_MASK];
+	#if VGA_NUM_COLS > 23
+	frame_line_bits[23] = char_defs[char_indexes[23] & CHARS_COUNT_MASK];
+	frame_line_bits[24] = char_defs[char_indexes[24] & CHARS_COUNT_MASK];
+	frame_line_bits[25] = char_defs[char_indexes[25] & CHARS_COUNT_MASK];
+	frame_line_bits[26] = char_defs[char_indexes[26] & CHARS_COUNT_MASK];
+	frame_line_bits[27] = char_defs[char_indexes[27] & CHARS_COUNT_MASK];
+	frame_line_bits[28] = char_defs[char_indexes[28] & CHARS_COUNT_MASK];
+	frame_line_bits[29] = char_defs[char_indexes[29] & CHARS_COUNT_MASK];
+	frame_line_bits[30] = char_defs[char_indexes[30] & CHARS_COUNT_MASK];
+	#endif
 	#endif
 
 	frame_prepared_line = line;
 }
 
 #define WRITE_GLYPH_LINE(offset)   \
-	"li     t0,0x00040004 \n"         /* load mask                              */ \
 	"c.lw   a3," #offset "(a2) \n"    /* load glyph scan line bits for column N */ \
 	"and    a4,a3,t0 \n"              /* mask video-out pin                     */ \
 	"c.sw   a4,0(a1) \n"              /* write to video-out pin                 */ \
-	"c.srli a3,1 \n"                  /* shift next bit into pin position       */ \
+	"c.srli a3,1     \n"              /* shift next bit into pin position       */ \
 	"and    a4,a3,t0 \n"           \
 	"c.sw   a4,0(a1) \n"           \
-	"c.srli a3,1 \n"               \
+	"c.srli a3,1     \n"           \
 	"and    a4,a3,t0 \n"           \
 	"c.sw   a4,0(a1) \n"           \
-	"c.srli a3,1 \n"               \
+	"c.srli a3,1     \n"           \
 	"and    a4,a3,t0 \n"           \
 	"c.sw   a4,0(a1) \n"           \
-	"c.srli a3,1 \n"               \
+	"c.srli a3,1     \n"           \
 	"and    a4,a3,t0 \n"           \
 	"c.sw   a4,0(a1) \n"           \
-	"c.srli a3,1 \n"               \
+	"c.srli a3,1     \n"           \
 	"and    a4,a3,t0 \n"           \
 	"c.sw   a4,0(a1) \n"           \
-	"c.srli a3,1 \n"               \
+	"c.srli a3,1     \n"           \
 	"and    a4,a3,t0 \n"           \
 	"c.sw   a4,0(a1) \n"           \
-	"c.srli a3,1 \n"               \
+	"c.srli a3,1     \n"           \
 	"and    a4,a3,t0 \n"           \
-	"c.sw   a4,0(a1) \n"
+	"c.sw   a4,0(a1) \n"           \
 
 void TIM2_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM2_IRQHandler(void) {
@@ -377,11 +400,13 @@ void TIM2_IRQHandler(void) {
 	#endif
 
 	waste_time(VGA_HBACK_PORCH);
-
+	__NOP();
+	
 	// Unroll the loop for columns and draw glyph bits
-	__asm(\
+	__asm volatile (\
 	"la     a2,frame_line_bits \n" // load a2(x12) with frame_line_bits array address
-	"li     a1,0x40011010     \n" // load a1(x11) with BSHR address
+	"li     a1,0x40011010      \n" // load a1(x11) with BSHR address
+	"li     t0,0x00040004      \n" // load mask
 	WRITE_GLYPH_LINE(4*0)
 	WRITE_GLYPH_LINE(4*1)
 	WRITE_GLYPH_LINE(4*2)
@@ -403,6 +428,18 @@ void TIM2_IRQHandler(void) {
 	WRITE_GLYPH_LINE(4*18)
 	WRITE_GLYPH_LINE(4*19)
 	WRITE_GLYPH_LINE(4*20)
+	WRITE_GLYPH_LINE(4*21)
+	WRITE_GLYPH_LINE(4*22)
+	#if VGA_NUM_COLS > 23
+	WRITE_GLYPH_LINE(4*23)
+	WRITE_GLYPH_LINE(4*24)
+	WRITE_GLYPH_LINE(4*25)
+	WRITE_GLYPH_LINE(4*26)
+	WRITE_GLYPH_LINE(4*27)
+	WRITE_GLYPH_LINE(4*28)
+	WRITE_GLYPH_LINE(4*29)
+	WRITE_GLYPH_LINE(4*30)
+	#endif
 	"addi   a3,a0,4           \n" // Load video-out bit value
 	"c.sw   a3,4(a1)          \n" // Clear video-out pin via BCR
 	);

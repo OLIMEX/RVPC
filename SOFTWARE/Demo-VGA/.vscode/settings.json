@@ -1,10 +1,8 @@
 {
     "files.associations": {
+        "string.h": "c",
         "ch32v00x.h": "c",
-        "ch32v00x_rcc.h": "c",
-        "ch32v00x_tim.h": "c",
         "chardefs.h": "c",
-        "vga.h": "c",
         "keyboard.h": "c"
     }
 }
