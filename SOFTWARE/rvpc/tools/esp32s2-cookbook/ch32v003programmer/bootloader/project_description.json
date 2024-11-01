@@ -1,0 +1,26 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/home/kalata23/github/esp32s2-cookbook/ch32v003programmer/bootloader",
+    "config_file":        "/home/kalata23/github/esp32s2-cookbook/ch32v003programmer/sdkconfig",
+    "config_defaults":    "",
+    "bootloader_elf":     "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "build_type":         "flash_app",
+    "git_revision":       "v5.1-rc2-4-gc570f67461",
+    "target":             "esp32s2",
+    "rev":                "",
+    "min_rev":            "0",
+    "max_rev":            "199",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32s2-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/home/kalata23/github/esp-idf_5_1/esp-idf/components/efuse/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_common/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_hw_support/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_system/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/freertos/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/hal/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/log/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/newlib/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/soc/Kconfig;/home/kalata23/github/esp-idf_5_1/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader/Kconfig.projbuild;/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_app_format/Kconfig.projbuild;/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/Kconfig.projbuild;/home/kalata23/github/esp-idf_5_1/esp-idf/components/esptool_py/Kconfig.projbuild;/home/kalata23/github/esp-idf_5_1/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp_app_format", "esp_common", "esp_hw_support", "esp_rom", "esp_system", "esptool_py", "freertos", "hal", "log", "main", "micro-ecc", "newlib", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader_support", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/efuse", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_app_format", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_common", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_hw_support", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_system", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/esptool_py", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/freertos", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/hal", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/log", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader/subproject/main", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader/subproject/components/micro-ecc", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/newlib", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/partition_table", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/soc", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/spi_flash", "/home/kalata23/github/esp-idf_5_1/esp-idf/components/xtensa", "" ],
+    "debug_prefix_map_gdbinit": ""
+}

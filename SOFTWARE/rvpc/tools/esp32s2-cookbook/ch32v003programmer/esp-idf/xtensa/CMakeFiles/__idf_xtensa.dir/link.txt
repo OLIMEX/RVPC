@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libxtensa.a CMakeFiles/__idf_xtensa.dir/eri.c.obj CMakeFiles/__idf_xtensa.dir/xt_trax.c.obj CMakeFiles/__idf_xtensa.dir/xtensa_intr.c.obj CMakeFiles/__idf_xtensa.dir/xtensa_intr_asm.S.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libxtensa.a

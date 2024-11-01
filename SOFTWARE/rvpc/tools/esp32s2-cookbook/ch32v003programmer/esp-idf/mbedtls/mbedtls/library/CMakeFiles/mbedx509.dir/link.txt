@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libmbedx509.a CMakeFiles/mbedx509.dir/x509.c.obj CMakeFiles/mbedx509.dir/x509_create.c.obj CMakeFiles/mbedx509.dir/x509_crl.c.obj CMakeFiles/mbedx509.dir/x509_crt.c.obj CMakeFiles/mbedx509.dir/x509_csr.c.obj CMakeFiles/mbedx509.dir/x509write_crt.c.obj CMakeFiles/mbedx509.dir/x509write_csr.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libmbedx509.a

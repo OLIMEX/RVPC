@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libesp-tls.a "CMakeFiles/__idf_esp-tls.dir/esp_tls.c.obj" "CMakeFiles/__idf_esp-tls.dir/esp-tls-crypto/esp_tls_crypto.c.obj" "CMakeFiles/__idf_esp-tls.dir/esp_tls_error_capture.c.obj" "CMakeFiles/__idf_esp-tls.dir/esp_tls_mbedtls.c.obj"
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libesp-tls.a

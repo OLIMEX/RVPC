@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-ar qc libesp_coex.a CMakeFiles/__idf_esp_coex.dir/esp32s2/esp_coex_adapter.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-ranlib libesp_coex.a

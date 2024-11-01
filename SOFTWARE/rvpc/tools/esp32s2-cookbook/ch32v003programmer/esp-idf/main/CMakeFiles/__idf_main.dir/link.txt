@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libmain.a CMakeFiles/__idf_main.dir/main.c.obj CMakeFiles/__idf_main.dir/advanced_usb_control.c.obj CMakeFiles/__idf_main.dir/programmer.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libmain.a

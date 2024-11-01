@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libvfs.a CMakeFiles/__idf_vfs.dir/vfs.c.obj CMakeFiles/__idf_vfs.dir/vfs_eventfd.c.obj CMakeFiles/__idf_vfs.dir/vfs_uart.c.obj CMakeFiles/__idf_vfs.dir/vfs_semihost.c.obj CMakeFiles/__idf_vfs.dir/vfs_console.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libvfs.a

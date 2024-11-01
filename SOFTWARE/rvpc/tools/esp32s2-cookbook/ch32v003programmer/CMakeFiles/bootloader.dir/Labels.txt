@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/CMakeFiles/bootloader
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/CMakeFiles/bootloader.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/CMakeFiles/bootloader-complete.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/kalata23/SVN/ESP32-SBC-FabGL/Software/trunk/Production_Test/tools/esp32s2-cookbook/ch32v003programmer/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-ar qc liblog.a CMakeFiles/__idf_log.dir/log.c.obj CMakeFiles/__idf_log.dir/log_buffers.c.obj CMakeFiles/__idf_log.dir/log_noos.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-ranlib liblog.a

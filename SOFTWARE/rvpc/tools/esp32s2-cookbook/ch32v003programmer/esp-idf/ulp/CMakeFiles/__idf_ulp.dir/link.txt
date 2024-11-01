@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libulp.a CMakeFiles/__idf_ulp.dir/ulp_common/ulp_common.c.obj CMakeFiles/__idf_ulp.dir/ulp_fsm/ulp.c.obj CMakeFiles/__idf_ulp.dir/ulp_fsm/ulp_macro.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libulp.a

@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/patches/esp_rom_longjmp.S
+xtensa/corebits.h
+-
+sdkconfig.h
+-
+
+/home/kalata23/github/esp-idf_5_1/esp-idf/components/xtensa/include/xtensa/corebits.h
+
+config/sdkconfig.h
+

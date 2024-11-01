@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libheap.a CMakeFiles/__idf_heap.dir/heap_caps.c.obj CMakeFiles/__idf_heap.dir/heap_caps_init.c.obj CMakeFiles/__idf_heap.dir/multi_heap.c.obj CMakeFiles/__idf_heap.dir/tlsf/tlsf.c.obj CMakeFiles/__idf_heap.dir/port/memory_layout_utils.c.obj CMakeFiles/__idf_heap.dir/port/esp32/memory_layout.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libheap.a

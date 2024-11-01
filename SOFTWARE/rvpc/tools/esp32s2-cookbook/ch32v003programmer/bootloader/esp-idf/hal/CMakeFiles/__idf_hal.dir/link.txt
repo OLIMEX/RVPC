@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-ar qc libhal.a CMakeFiles/__idf_hal.dir/mpu_hal.c.obj CMakeFiles/__idf_hal.dir/efuse_hal.c.obj CMakeFiles/__idf_hal.dir/esp32s2/efuse_hal.c.obj CMakeFiles/__idf_hal.dir/wdt_hal_iram.c.obj CMakeFiles/__idf_hal.dir/mmu_hal.c.obj CMakeFiles/__idf_hal.dir/cache_hal.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-ranlib libhal.a

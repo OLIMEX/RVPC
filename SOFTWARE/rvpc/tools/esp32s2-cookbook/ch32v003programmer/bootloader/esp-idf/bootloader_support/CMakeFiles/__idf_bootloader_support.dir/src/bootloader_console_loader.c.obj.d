@@ -1,0 +1,19 @@
+esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console_loader.c.obj: \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader_support/src/bootloader_console_loader.c \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/lib/gcc/xtensa-esp32s2-elf/12.2.0/include/stdint.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/xtensa-esp32s2-elf/sys-include/stdint.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/xtensa-esp32s2-elf/sys-include/machine/_default_types.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/xtensa-esp32s2-elf/sys-include/sys/features.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/xtensa-esp32s2-elf/sys-include/_newlib_version.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/xtensa-esp32s2-elf/sys-include/sys/_intsup.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/xtensa-esp32s2-elf/sys-include/sys/_stdint.h \
+ /home/kalata23/.espressif/tools/xtensa-esp32s2-elf/esp-12.2.0_20230208/xtensa-esp32s2-elf/lib/gcc/xtensa-esp32s2-elf/12.2.0/include/stddef.h \
+ /home/kalata23/github/esp32s2-cookbook/ch32v003programmer/bootloader/config/sdkconfig.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/bootloader_support/private_include/bootloader_console.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/include/esp_rom_uart.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/include/esp_rom_sys.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/soc/esp32s2/include/soc/reset_reasons.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/include/esp32s2/rom/usb/chip_usb_dw_wrapper.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/include/esp32s2/rom/usb/usb_dc.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/include/esp32s2/rom/usb/cdc_acm.h \
+ /home/kalata23/github/esp-idf_5_1/esp-idf/components/esp_rom/include/esp32s2/rom/usb/usb_persist.h

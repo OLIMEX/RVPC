@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libesp_phy.a CMakeFiles/__idf_esp_phy.dir/src/phy_override.c.obj CMakeFiles/__idf_esp_phy.dir/src/lib_printf.c.obj CMakeFiles/__idf_esp_phy.dir/src/phy_init.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libesp_phy.a

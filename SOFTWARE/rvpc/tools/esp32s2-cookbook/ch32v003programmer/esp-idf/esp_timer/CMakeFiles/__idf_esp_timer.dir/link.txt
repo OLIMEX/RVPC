@@ -1,0 +1,2 @@
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ar qc libesp_timer.a CMakeFiles/__idf_esp_timer.dir/src/esp_timer.c.obj CMakeFiles/__idf_esp_timer.dir/src/ets_timer_legacy.c.obj CMakeFiles/__idf_esp_timer.dir/src/system_time.c.obj CMakeFiles/__idf_esp_timer.dir/src/esp_timer_impl_lac.c.obj
+/home/kalata23/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-ranlib libesp_timer.a

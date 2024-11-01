@@ -1,0 +1,5 @@
+source "/home/kalata23/github/_espidf/esp-idf/components/bootloader/Kconfig.projbuild"
+source "/home/kalata23/github/_espidf/esp-idf/components/esp_app_format/Kconfig.projbuild"
+source "/home/kalata23/github/_espidf/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "/home/kalata23/github/_espidf/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "/home/kalata23/github/_espidf/esp-idf/components/partition_table/Kconfig.projbuild"
