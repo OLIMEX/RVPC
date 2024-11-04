@@ -4,5 +4,5 @@ You can open and upload it and you will hear sound.
 
 
 # Tools
-pvpc folder contain all tools you will need to program ESP32-S2-DevKitLiPo-USB to act as programmer and the minichlink which used the ESP32-S2 to program CH32V003
-Follow the instructions in the user manual
+The rvpc folder contains all the tools needed to program an ESP32-S2-DevKitLiPo-USB to act as a programmer, and minichlink, which uses the ESP32-S2 to program CH32V003.
+Follow the instructions in the user manual.
