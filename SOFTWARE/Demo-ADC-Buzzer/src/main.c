@@ -135,7 +135,7 @@ void calcDelay(uint32_t *delay) {
 }
 
 int main(void) {
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	SystemCoreClockUpdate();
 
 	// Disable GPIO Alternate Functions
