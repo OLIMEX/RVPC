@@ -31,7 +31,7 @@ extern void waste_time(uint8_t d);
 
 // These are the character definitions in ROM (flash memory).
 //
-const uint32_t vga_character_defs[CHAR_HEIGHT][CHARS_COUNT] = {
+const uint8_t vga_character_defs[CHAR_HEIGHT][CHARS_COUNT] = {
 	CHARSET_LINE(0),
 	CHARSET_LINE(1),
 	CHARSET_LINE(2),
@@ -249,7 +249,7 @@ static uint32_t frame_prepared_line = 0xFFFFFFFF;
 uint32_t frame_line_bits[VGA_NUM_COLS];
 
 inline static void vga_prepare_line(uint32_t line) {
-	static const uint32_t* char_defs = NULL;
+	static const uint8_t* char_defs = NULL;
 	static uint8_t* char_indexes = NULL;
 
 	if (frame_prepared_line == line) {
@@ -304,30 +304,30 @@ inline static void vga_prepare_line(uint32_t line) {
 	frame_line_bits[30] = char_defs[char_indexes[30] & CHARS_COUNT_MASK] ^ (vga_cursor_pos.col == 30 ? MASK : 0);
 	#endif
 	#else
-	frame_line_bits[ 0] = char_defs[char_indexes[ 0] & CHARS_COUNT_MASK];
-	frame_line_bits[ 1] = char_defs[char_indexes[ 1] & CHARS_COUNT_MASK];
-	frame_line_bits[ 2] = char_defs[char_indexes[ 2] & CHARS_COUNT_MASK];
-	frame_line_bits[ 3] = char_defs[char_indexes[ 3] & CHARS_COUNT_MASK];
-	frame_line_bits[ 4] = char_defs[char_indexes[ 4] & CHARS_COUNT_MASK];
-	frame_line_bits[ 5] = char_defs[char_indexes[ 5] & CHARS_COUNT_MASK];
-	frame_line_bits[ 6] = char_defs[char_indexes[ 6] & CHARS_COUNT_MASK];
-	frame_line_bits[ 7] = char_defs[char_indexes[ 7] & CHARS_COUNT_MASK];
-	frame_line_bits[ 8] = char_defs[char_indexes[ 8] & CHARS_COUNT_MASK];
-	frame_line_bits[ 9] = char_defs[char_indexes[ 9] & CHARS_COUNT_MASK];
-	frame_line_bits[10] = char_defs[char_indexes[10] & CHARS_COUNT_MASK];
-	frame_line_bits[11] = char_defs[char_indexes[11] & CHARS_COUNT_MASK];
-	frame_line_bits[12] = char_defs[char_indexes[12] & CHARS_COUNT_MASK];
-	frame_line_bits[13] = char_defs[char_indexes[13] & CHARS_COUNT_MASK];
-	frame_line_bits[14] = char_defs[char_indexes[14] & CHARS_COUNT_MASK];
-	frame_line_bits[15] = char_defs[char_indexes[15] & CHARS_COUNT_MASK];
-	frame_line_bits[16] = char_defs[char_indexes[16] & CHARS_COUNT_MASK];
-	frame_line_bits[17] = char_defs[char_indexes[17] & CHARS_COUNT_MASK];
-	frame_line_bits[18] = char_defs[char_indexes[18] & CHARS_COUNT_MASK];
-	frame_line_bits[19] = char_defs[char_indexes[19] & CHARS_COUNT_MASK];
-	frame_line_bits[20] = char_defs[char_indexes[20] & CHARS_COUNT_MASK];
-	frame_line_bits[21] = char_defs[char_indexes[21] & CHARS_COUNT_MASK];
-	frame_line_bits[22] = char_defs[char_indexes[22] & CHARS_COUNT_MASK];
-	#if VGA_NUM_COLS > 23
+	frame_line_bits[ 0] = char_defs[char_indexes[ 0] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 1] = char_defs[char_indexes[ 1] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 2] = char_defs[char_indexes[ 2] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 3] = char_defs[char_indexes[ 3] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 4] = char_defs[char_indexes[ 4] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 5] = char_defs[char_indexes[ 5] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 6] = char_defs[char_indexes[ 6] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 7] = char_defs[char_indexes[ 7] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 8] = char_defs[char_indexes[ 8] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[ 9] = char_defs[char_indexes[ 9] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[10] = char_defs[char_indexes[10] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[11] = char_defs[char_indexes[11] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[12] = char_defs[char_indexes[12] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[13] = char_defs[char_indexes[13] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[14] = char_defs[char_indexes[14] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[15] = char_defs[char_indexes[15] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[16] = char_defs[char_indexes[16] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[17] = char_defs[char_indexes[17] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[18] = char_defs[char_indexes[18] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[19] = char_defs[char_indexes[19] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[20] = char_defs[char_indexes[20] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[21] = char_defs[char_indexes[21] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+	frame_line_bits[22] = char_defs[char_indexes[22] & CHARS_COUNT_MASK] << 2 | 0xfffffc00;
+#if VGA_NUM_COLS > 23
 	frame_line_bits[23] = char_defs[char_indexes[23] & CHARS_COUNT_MASK];
 	frame_line_bits[24] = char_defs[char_indexes[24] & CHARS_COUNT_MASK];
 	frame_line_bits[25] = char_defs[char_indexes[25] & CHARS_COUNT_MASK];
